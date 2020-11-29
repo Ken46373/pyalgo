@@ -10,4 +10,5 @@ def bogo_sort(numbers: List[int]) -> List[int]:
     return numbers
 
 if __name__ == '__main__':
-    print(bogo_sort([1, 5, 3, 6, 2]))
+    nums = [random.randint(0, 1000) for _ in range(10)]
+    print(bogo_sort(nums))
