@@ -8,17 +8,31 @@ def linear_search(numbers: List[int], target: int) -> IndexNum:
             return i
     return -1
 
+# def binary_search(numbers: List[int], target: int) -> IndexNum:
+#     left, right = 0, len(numbers)-1
+#     while left <= right:
+#         mid = (left + right) // 2
+#         if numbers[mid] == target:
+#             return mid
+#         elif numbers[mid] < target:
+#             left = mid + 1
+#         else:
+#             right = mid - 1
+#     return -1
+
 def binary_search(numbers: List[int], target: int) -> IndexNum:
-    left, right = 0, len(numbers)-1
-    while left <= right:
+    def _binary_search(numbers: List[int], target: int, left: int, right: int) -> IndexNum:
+        if left > right:
+            return -1
+        
         mid = (left + right) // 2
         if numbers[mid] == target:
             return mid
         elif numbers[mid] < target:
-            left = mid + 1
+            return _binary_search(numbers, target, mid + 1, right)
         else:
-            right = mid - 1
-    return -1
+            return _binary_search(numbers, target, left, mid - 1)
+    return _binary_search(numbers, target, 0, len(numbers) - 1)
 
 if __name__ == '__main__':
     nums = [0, 1, 5, 7, 9, 11, 15, 20, 24]
