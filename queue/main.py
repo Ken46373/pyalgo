@@ -1,4 +1,5 @@
 from typing import Any
+from collections import deque
 
 class Queue(object):
 
@@ -14,15 +15,29 @@ class Queue(object):
         
 
 if __name__ == '__main__':
-    q = Queue()
-    q.enqueue(1)
-    q.enqueue(2)
-    q.enqueue(3)
-    q.enqueue(4)
+    q = deque()
+    q.append(1)
+    q.append(2)
+    q.append(3)
+    q.append(4)
+    
+    print(q)
 
-    print(q.queue)
+    print(q.popleft())
+    print(q.popleft())
+    print(q.popleft())
+    print(q.popleft())
 
-    print(q.dequeue())
-    print(q.dequeue())
-    print(q.dequeue())
-    print(q.dequeue())
+
+    # q = Queue()
+    # q.enqueue(1)
+    # q.enqueue(2)
+    # q.enqueue(3)
+    # q.enqueue(4)
+
+    # print(q.queue)
+
+    # print(q.dequeue())
+    # print(q.dequeue())
+    # print(q.dequeue())
+    # print(q.dequeue())
