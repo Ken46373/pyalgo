@@ -35,6 +35,32 @@ def searh(node: Node, value: int) -> bool:
         return searh(node.right, value)
 
 
+def min_value(node: Node) -> Node:
+    current = node
+    while current.left is not None:
+        current = current.left
+    return current
+
+
+def remove(node: Node, value: int) -> Node:
+    if node is None:
+        return node
+    
+    if value < node.value:
+        node.left = remove(node.left, value)
+    elif value > node.value:
+        node.right = remove(node.right, value)
+    else:
+        if node.left is None:
+            return node.right
+        elif node.right is None:
+            return node.left
+        
+        tmp = min_value(node.right)
+        node.value = tmp.value
+        node.right = remove(node.right, tmp.value)
+    return node
+
 
 if __name__ == '__main__':
     root = None
@@ -45,6 +71,7 @@ if __name__ == '__main__':
     root = insert(root, 1)
     root = insert(root, 10)
     root = insert(root, 2)
-    #inorder(root)
-    print(searh(root, 4))
-
+    inorder(root)
+    print("#####")
+    root = remove(root, 6)
+    inorder(root)
